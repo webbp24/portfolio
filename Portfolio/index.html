@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Patrick W | Web Design</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+<!-- start animation -->
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+<script src="animation.js"></script>
+<script>
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	var comp=AdobeAn.getComposition("D922DB74B70F6D4DA2A103B205F84DC3");
+	var lib=comp.getLibrary();
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	var lib=comp.getLibrary();
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt,comp) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var lib=comp.getLibrary();
+	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib.animation();
+	stage = new lib.Stage(canvas);	
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		stage.addChild(exportRoot);
+		createjs.Ticker.framerate = lib.properties.fps;
+		createjs.Ticker.addEventListener("tick", stage);
+	}	    
+	//Code to support hidpi screens and responsive scaling.
+	AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
+	AdobeAn.compositionLoaded(lib.properties.id);
+	fnStartAnimation();
+}
+</script>
+<!-- end animation-->
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Patrick's Portfolio</h1>
+						<p>A free, fully responsive HTML5 + CSS3 site template designed by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
+						and released for free under the <a href="https://html5up.net/license">Creative Commons license</a>.</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Massively</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">This is Massively</a></li>
+							<li><a href="generic.html">Generic Page</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<span class="date">january 3, 2024</span>
+									<h2><a href="#">Travel</a></h2>
+									<p>An engaging site that ranks as well as suggests popular and under the radar vacation spots.<br />
+									</p>
+								</header>
+								<a href="https://webbp24.github.io/Travel/" class="image main"><img src="vacationswebsitepic2.png" alt="" /></a>
+								<ul class="actions special">
+									<li><a href="#" class="button large">Full Story <Article></Article></a></li>
+								</ul>
+							</article>
+
+						<!-- Posts -->
+							<section class="posts">
+								<article>
+									<header>
+										<span class="date">April 24, 2017</span>
+										<h2><a href="#">Celtics<br />
+										Basketball</a></h2>
+									</header>
+									<a href="https://webbp24.github.io/Celtics/" class="image fit"><img src="onepagerpic.png" alt="" /></a>
+									<p>Explore the aquisitions made by General Manager Brad Stevens as well as a confident season prediction.</p>
+									<ul class="actions special">
+										<li><a href="#" class="button">Full Story</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<span class="date">April 22, 2017</span>
+										<h2><a href="#">Walpole <br />
+										Football</a></h2>
+									</header>
+									<a href="https://webbp24.github.io/WHS/" class="image fit"><img src="images/2024-01-09 11_30_17-127.0.0.1_5501_index.html.png" alt="" /></a>
+									<p>Walpole Football's history and schedule are on display.</p>
+									<ul class="actions special">
+										<li><a href="" class="button">Full Story</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<span class="date">April 18, 2017</span>
+										<h2><a href="#">Lacrosse Online Shop</a></h2>
+									</header>
+									<a href="https://webbp24.github.io/lax/" class="image fit"><img src="images/Lax.png" alt="" /></a>
+									<p>Shop for some of the best long pole shafts around!</p>
+									<ul class="actions special">
+										<li><a href="" class="button">Full Story</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<span class="date">April 14, 2017</span>
+										<h2><a href="#">w.3<br />
+										Schools</a></h2>
+									</header>
+									<a href="https://webbp24.github.io/w3schools/" class="image fit"><img src="images/w3 schools.png" alt="" /></a>
+									<p>My personal favorite 9 movies of all time.</p>
+									<ul class="actions special">
+										<li><a href="#" class="button">Full Story</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<span class="date">January 11, 2023</span>
+										<h2><a href="#">Website <br />
+										Redesign</a></h2>
+									</header>
+									<a href="#" class="image fit"><img src="images/websiteredesign.webm" alt="" /></a>
+									<p>Me and a partner redesigned an enviornmentally friendly mobile car detailing site.</p>
+									<ul class="actions special">
+										<li><a href="#" class="button">Full Story</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<head>
+											
+											<meta charset="UTF-8">
+											<meta name="authoring-tool" content="Adobe_Animate_CC">
+											<title>Animation</title>
+											<body onload="init();" style="margin:0px;"></body>
+											<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:200px; height:200px">
+												<canvas id="canvas" width="200" height="200" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+												<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:200px; height:200px; position: absolute; left: 0px; top: 0px; display: block;">
+												</div>
+											</div>
+											</head>
+										<span class="date">April 7, 2017</span>
+										<h2><a href="#">Animation<br />
+										</a></h2>
+									</header>
+									<a href="" class="image fit"><img src="images/animation_atlas_1.png" alt="" /></a>
+									<p>Walpole Lacrosse Animation</p>
+									<ul class="actions special">
+										<li><a href="#" class="button">Full Story</a></li>
+									</ul>
+								</article>
+							</section>
+
+							<article>
+								<header>
+									<span class="date">April 8, 2024</span>
+									<h2><a href="https://jreuther4.wixsite.com/invest">Wix  <br />
+									Website</a></h2>
+								</header>
+								<a href="https://jreuther4.wixsite.com/invest" class="image fit"><img src="images/invest.jpg" alt="" /></a>
+								<p>I redesigned an investing website on wix.</p>
+								<ul class="actions special">
+									<li><a href="" class="button">Full Story</a></li>
+								</ul>
+							</article>
+
+							<article>
+								<header>
+									<span class="date">April 8, 2024</span>
+									<h2><a href="https://jreuther4.wixsite.com/pizzahaven">Wix Creative  <br />
+									Website</a></h2>
+								</header>
+								<a href="https://jreuther4.wixsite.com/pizzahaven" class="image fit"><img src="images/pizzahaven.png" alt="" /></a>
+								<p>I created a pizza website on wix.</p>
+								<ul class="actions special">
+									<li><a href="" class="button">Full Story</a></li>
+								</ul>
+							</article>
+
+							<article>
+								<header>
+									<span class="date">April 8, 2024</span>
+									<h2><a href="https://github.com/webbp24/dreamweaver.git">Dreamweaver  <br />
+									Hero</a></h2>
+								</header>
+								<a href="https://github.com/webbp24/dreamweaver.git" class="image fit"><img src="images/dreamweaver.png" alt="" /></a>
+								<p>I redesigned an investing website on wix.</p>
+								<ul class="actions special">
+									<li><a href="" class="button">Full Story</a></li>
+								</ul>
+							</article>
+						<!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<!--<a href="#" class="previous">Prev</a>-->
+									<a href="#" class="page active">1</a>
+									<a href="#" class="page">2</a>
+									<a href="#" class="page">3</a>
+									<span class="extra">&hellip;</span>
+									<a href="#" class="page">8</a>
+									<a href="#" class="page">9</a>
+									<a href="#" class="page">10</a>
+									<a href="#" class="next">Next</a>
+								</div>
+							</footer>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li><br>
+								</ul>
+								<h3>WHS Web Design P5</h3><br>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
